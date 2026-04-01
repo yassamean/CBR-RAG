@@ -53,8 +53,8 @@ Dependencies: none? Ollama Generator runterladen? Frag Tolga
 library: see this URL for information on how to install this library:
 Comments should enable you to understand its underlying logic
 
-# Only paste the BPMN XML code (without the dimension part) here for the question category pattern adaptation. So in the cases, where the bpmn is not already in the case base.
-#The following bpmns are not in the case base: 03_Departure_Boarding_Gate_International.bpmn, 04_Arrival_Lost_Bagggage.bpmn, 02_Departure_Baggage_Handover.bpmn
+Only paste the BPMN XML code (without the dimension part) here for the question category pattern adaptation. So in the cases, where the bpmn is not already in the case base.
+The following bpmns are not in the case base: 03_Departure_Boarding_Gate_International.bpmn, 04_Arrival_Lost_Bagggage.bpmn, 02_Departure_Baggage_Handover.bpmn
 
 ####### How-to run Plain-LLM #######
 Only tested with Python 3.14.2
