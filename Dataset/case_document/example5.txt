@@ -1,0 +1,201 @@
+BPMN model "Example" serialised in XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1d2hcmz" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.20.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <bpmn:collaboration id="Collaboration_0n26n9u">
+    <bpmn:extensionElements>
+      <camunda:properties>
+        <camunda:property name="requires_data" value="barcode" />
+      </camunda:properties>
+    </bpmn:extensionElements>
+    <bpmn:participant id="Participant_1hnlo3z" name="01_Automated_Baggage_Drop_Off" processRef="Process_0gjrx3e" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0gjrx3e" isExecutable="true" camunda:historyTimeToLive="180">
+    <bpmn:laneSet id="LaneSet_0s9rgso">
+      <bpmn:lane id="Lane_0ki22cj" name="Fast Bag Drop">
+        <bpmn:flowNodeRef>Activity_0woyswi</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ompcal</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1xwwd5o</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0dftsvu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1ua1be6</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_19dlh1i</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0nii0o4</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_07djz79" name="Passenger">
+        <bpmn:flowNodeRef>Activity_1agc77m</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0u1vxh8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1uqglq0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_051g64f</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:childLaneSet id="LaneSet_172u32j" />
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1plr26t" name="Kiosk">
+        <bpmn:flowNodeRef>Activity_18svuyj</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0rh9k7t</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:dataObjectReference id="DataObjectReference_0ak11wh" name="Passport" dataObjectRef="DataObject_0zloh03">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="data_attribute" value="name" />
+          <camunda:property name="data_attribute" value="photo" />
+          <camunda:property name="data_attribute" value="valid_until" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_0zloh03" />
+    <bpmn:serviceTask id="Activity_18svuyj" name="Print Baggage  Tag">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="produces_data" value="barcode" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_03jqur8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0u3rnhg</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1ryj1f2">
+        <bpmn:targetRef>DataObjectReference_1x4xcvx</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_1agc77m" name="Attach Baggage Tag">
+      <bpmn:incoming>Flow_0u3rnhg</bpmn:incoming>
+      <bpmn:outgoing>Flow_0vvz2tw</bpmn:outgoing>
+      <bpmn:property id="Property_01prxzt" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_07gxkf1">
+        <bpmn:sourceRef>DataObjectReference_1ncctj8</bpmn:sourceRef>
+        <bpmn:targetRef>Property_01prxzt</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
+    <bpmn:dataObjectReference id="DataObjectReference_1ncctj8" name="Baggage Tag" dataObjectRef="DataObject_0ezycnt">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="data_attribute" value="barcode" />
+          <camunda:property name="data_attribute" value="baggage_tag_number" />
+          <camunda:property name="data_attribute" value="name" />
+          <camunda:property name="data_attribute" value="flight_number" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_0ezycnt" />
+    <bpmn:dataObjectReference id="DataObjectReference_1x4xcvx" name="Baggage Tag" dataObjectRef="DataObject_0ybw202">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="data_attribute" value="barcode" />
+          <camunda:property name="data_attribute" value="baggage_tag_number" />
+          <camunda:property name="data_attribute" value="name" />
+          <camunda:property name="data_attribute" value="flight_number" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_0ybw202" />
+    <bpmn:userTask id="Activity_0u1vxh8" name="Walk to Fast Bag Drop">
+      <bpmn:incoming>Flow_0vvz2tw</bpmn:incoming>
+      <bpmn:outgoing>Flow_11t8f2q</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0woyswi" name="Identify Passenger">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_11t8f2q</bpmn:incoming>
+      <bpmn:outgoing>Flow_0t54nou</bpmn:outgoing>
+      <bpmn:property id="Property_0jslvhi" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_19vktde">
+        <bpmn:sourceRef>DataObjectReference_03mzisj</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0jslvhi</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="DataObjectReference_03mzisj" name="Boarding Pass" dataObjectRef="DataObject_1ac8s2t">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="data_attribute" value="barcode" />
+          <camunda:property name="data_attribute" value="seat_number" />
+          <camunda:property name="data_attribute" value="flight_number" />
+          <camunda:property name="data_attribute" value="name" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_1ac8s2t" />
+    <bpmn:userTask id="Activity_1uqglq0" name="Vertical Placement of Luggage">
+      <bpmn:incoming>Flow_0t54nou</bpmn:incoming>
+      <bpmn:outgoing>Flow_1lco5aq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0ditkkg" sourceRef="StartEvent_1" targetRef="Activity_051g64f" />
+    <bpmn:sequenceFlow id="Flow_1entuc5" sourceRef="Activity_051g64f" targetRef="Activity_0rh9k7t" />
+    <bpmn:sequenceFlow id="Flow_03jqur8" sourceRef="Activity_0rh9k7t" targetRef="Activity_18svuyj" />
+    <bpmn:sequenceFlow id="Flow_0u3rnhg" sourceRef="Activity_18svuyj" targetRef="Activity_1agc77m" />
+    <bpmn:sequenceFlow id="Flow_0vvz2tw" sourceRef="Activity_1agc77m" targetRef="Activity_0u1vxh8" />
+    <bpmn:sequenceFlow id="Flow_11t8f2q" sourceRef="Activity_0u1vxh8" targetRef="Activity_0woyswi" />
+    <bpmn:sequenceFlow id="Flow_0t54nou" sourceRef="Activity_0woyswi" targetRef="Activity_1uqglq0" />
+    <bpmn:sequenceFlow id="Flow_1lco5aq" sourceRef="Activity_1uqglq0" targetRef="Activity_0ompcal" />
+    <bpmn:serviceTask id="Activity_0rh9k7t" name="Scan Passport">
+      <bpmn:incoming>Flow_1entuc5</bpmn:incoming>
+      <bpmn:outgoing>Flow_03jqur8</bpmn:outgoing>
+      <bpmn:property id="Property_0pt5gm9" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_05husja">
+        <bpmn:sourceRef>DataObjectReference_0ak11wh</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0pt5gm9</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_051g64f" name="Walk to Check-In Kiosk">
+      <bpmn:incoming>Flow_0ditkkg</bpmn:incoming>
+      <bpmn:outgoing>Flow_1entuc5</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_0ditkkg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:serviceTask id="Activity_0ompcal" name="Dimension Check">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="produces_data" value="dimension_result" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1lco5aq</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tuvasd</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1xwwd5o" name="Weight Check">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="produces_data" value="weight_result" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0tuvasd</bpmn:incoming>
+      <bpmn:outgoing>Flow_17atj0y</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0tuvasd" sourceRef="Activity_0ompcal" targetRef="Activity_1xwwd5o" />
+    <bpmn:sequenceFlow id="Flow_17atj0y" sourceRef="Activity_1xwwd5o" targetRef="Activity_0dftsvu" />
+    <bpmn:serviceTask id="Activity_0dftsvu" name="Reading the Barcode">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="requires_data" value="barcode" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17atj0y</bpmn:incoming>
+      <bpmn:outgoing>Flow_0op4g1o</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0op4g1o" sourceRef="Activity_0dftsvu" targetRef="Activity_1ua1be6" />
+    <bpmn:serviceTask id="Activity_1ua1be6" name="Forwarding Baggage">
+      <bpmn:incoming>Flow_0op4g1o</bpmn:incoming>
+      <bpmn:outgoing>Flow_19fm722</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="DataObjectReference_19djuop" name="Baggage Stub" dataObjectRef="DataObject_1dlxjdl">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="data_attribute" value="name" />
+          <camunda:property name="data_attribute" value="baggage_tag_number" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_1dlxjdl" />
+    <bpmn:serviceTask id="Activity_19dlh1i" name="Issue Baggage Stub">
+      <bpmn:incoming>Flow_19fm722</bpmn:incoming>
+      <bpmn:outgoing>Flow_198tq9x</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_1r3omzm">
+        <bpmn:targetRef>DataObjectReference_19djuop</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_19fm722" sourceRef="Activity_1ua1be6" targetRef="Activity_19dlh1i" />
+    <bpmn:sequenceFlow id="Flow_198tq9x" sourceRef="Activity_19dlh1i" targetRef="Event_0nii0o4" />
+    <bpmn:endEvent id="Event_0nii0o4" name="End">
+      <bpmn:incoming>Flow_198tq9x</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+
+Example Question: Why do I need to place my Passport on the Kiosk scanner?
+
+Example Answer: You need to place your passport on the Kiosk scanner, in order for the Fast Bag Drop mashine to print out your Baggage Tag in the next step.

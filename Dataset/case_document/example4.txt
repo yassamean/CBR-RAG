@@ -1,0 +1,193 @@
+BPMN model "Example" serialised in XML:
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ksue5u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.4.0">
+  <bpmn:collaboration id="Collaboration_0fic9vp">
+    <bpmn:participant id="Participant_0qxvbzd" name="01_Departure_CheckIn_Counter" processRef="Process_0vf1lkj" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0vf1lkj" name="Boarding Pass/ SPLIT" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_1mjxbtr">
+      <bpmn:lane id="Lane_12iqtkc" name="Passenger">
+        <bpmn:extensionElements />
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1qi4j8p</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0qbfhc3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_06010xo</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0pwcaud</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1vhsw4o" name="Airline Agent">
+        <bpmn:flowNodeRef>Activity_0fn1fwp</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1cp4rtu</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1reyw5v</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1y7fbsf</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_0254orl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0ijzxu7</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1xpvvwq" name="Security area">
+        <bpmn:flowNodeRef>Activity_0c7etd5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0rd3x9m</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:userTask id="Activity_0fn1fwp" name="Verify Passengers Identity">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kaiw1e</bpmn:incoming>
+      <bpmn:outgoing>Flow_0bt20rj</bpmn:outgoing>
+      <bpmn:property id="Property_02ocngn" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_0jngde3">
+        <bpmn:sourceRef>DataObjectReference_0bt9uma</bpmn:sourceRef>
+        <bpmn:targetRef>Property_02ocngn</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DataInputAssociation_0axvodp">
+        <bpmn:sourceRef>DataObjectReference_09dcgls</bpmn:sourceRef>
+        <bpmn:targetRef>Property_02ocngn</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1cp4rtu" name="Select Seat">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+        <zeebe:properties>
+          <zeebe:property name="produces_data" value="seat_number" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0bt20rj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fu0sf8</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:dataObjectReference id="DataObjectReference_09dcgls" name="Ticket" dataObjectRef="DataObject_0ugmpvr">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="data_attribute" value="name" />
+          <zeebe:property name="data_attribute" value="destination_airport" />
+          <zeebe:property name="data_attribute" value="booking_number" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_0ugmpvr" />
+    <bpmn:dataObjectReference id="DataObjectReference_0bt9uma" name="Passport" dataObjectRef="DataObject_0p3zcdm">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="data_attribute" value="name" />
+          <zeebe:property name="data_attribute" value="photo" />
+          <zeebe:property name="data_attribute" value="valid_until" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_0p3zcdm" />
+    <bpmn:startEvent id="StartEvent_1" name="Start">
+      <bpmn:outgoing>Flow_1ihk5ez</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_1qi4j8p" name="Terminal Arrival">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ihk5ez</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xdsi2e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0qbfhc3" name="Queue at Counter">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1xdsi2e</bpmn:incoming>
+      <bpmn:outgoing>Flow_1qzf6op</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_06010xo" name="Wait until turn">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1qzf6op</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kaiw1e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1kaiw1e" sourceRef="Activity_06010xo" targetRef="Activity_0fn1fwp" />
+    <bpmn:sequenceFlow id="Flow_0bt20rj" sourceRef="Activity_0fn1fwp" targetRef="Activity_1cp4rtu" />
+    <bpmn:sequenceFlow id="Flow_0fu0sf8" sourceRef="Activity_1cp4rtu" targetRef="Gateway_1reyw5v" />
+    <bpmn:sequenceFlow id="Flow_1ihk5ez" sourceRef="StartEvent_1" targetRef="Activity_1qi4j8p" />
+    <bpmn:sequenceFlow id="Flow_1xdsi2e" sourceRef="Activity_1qi4j8p" targetRef="Activity_0qbfhc3" />
+    <bpmn:sequenceFlow id="Flow_1qzf6op" sourceRef="Activity_0qbfhc3" targetRef="Activity_06010xo" />
+    <bpmn:exclusiveGateway id="Gateway_1reyw5v" name="Baggage? /SPLIT">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_0fu0sf8</bpmn:incoming>
+      <bpmn:outgoing>Flow_0q64k3k</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17hhzsu</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0q64k3k" name="No" sourceRef="Gateway_1reyw5v" targetRef="Gateway_0254orl" />
+    <bpmn:sequenceFlow id="Flow_17hhzsu" name="Yes" sourceRef="Gateway_1reyw5v" targetRef="Activity_1y7fbsf" />
+    <bpmn:sequenceFlow id="Flow_0f8w7my" sourceRef="Activity_1y7fbsf" targetRef="Gateway_0254orl" />
+    <bpmn:sequenceFlow id="Flow_19rbuhj" sourceRef="Gateway_0254orl" targetRef="Activity_0ijzxu7" />
+    <bpmn:sequenceFlow id="Flow_1urofnp" sourceRef="Activity_0pwcaud" targetRef="Activity_0c7etd5" />
+    <bpmn:sequenceFlow id="Flow_1kfh6mq" sourceRef="Activity_0ijzxu7" targetRef="Activity_0pwcaud" />
+    <bpmn:userTask id="Activity_0pwcaud" name="Walk to Security">
+      <bpmn:extensionElements>
+        <zeebe:userTask />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kfh6mq</bpmn:incoming>
+      <bpmn:outgoing>Flow_1urofnp</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0h4o2ew" sourceRef="Activity_0c7etd5" targetRef="Event_0rd3x9m" />
+    <bpmn:serviceTask id="Activity_0c7etd5" name="Verify Boarding Pass at Security E-Gate">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_1urofnp</bpmn:incoming>
+      <bpmn:outgoing>Flow_0h4o2ew</bpmn:outgoing>
+      <bpmn:property id="Property_06smyv0" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1bww1xf">
+        <bpmn:sourceRef>DataObjectReference_1y7780h</bpmn:sourceRef>
+        <bpmn:targetRef>Property_06smyv0</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0rd3x9m" name="End">
+      <bpmn:incoming>Flow_0h4o2ew</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:dataObjectReference id="DataObjectReference_1y7780h" name="Boarding Pass" dataObjectRef="DataObject_0doue1u">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="data_attribute" value="barcode" />
+          <zeebe:property name="data_attribute" value="flight_number" />
+          <zeebe:property name="data_attribute" value="name" />
+          <zeebe:property name="data_attribute" value="seat_number" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_0doue1u" />
+    <bpmn:subProcess id="Activity_1y7fbsf" name="Baggage Handover">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="produces_data" value="baggage_claim_tag" />
+          <zeebe:property name="reason" value="This only happens if you told us you have bags. We need to finish this before printing your boarding pass because the baggage details sometimes need to be linked to your travel documents." />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_17hhzsu</bpmn:incoming>
+      <bpmn:outgoing>Flow_0f8w7my</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:exclusiveGateway id="Gateway_0254orl" name="Baggage? /JOIN">
+      <bpmn:incoming>Flow_0q64k3k</bpmn:incoming>
+      <bpmn:incoming>Flow_0f8w7my</bpmn:incoming>
+      <bpmn:outgoing>Flow_19rbuhj</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="Activity_0ijzxu7" name="Issue Boarding Pass">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="requires_data" value="seat_number" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_19rbuhj</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kfh6mq</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_16w0wr7">
+        <bpmn:targetRef>DataObjectReference_0331c4w</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="DataObjectReference_0331c4w" name="Boarding Pass" dataObjectRef="DataObject_120zz4b">
+      <bpmn:extensionElements>
+        <zeebe:properties>
+          <zeebe:property name="data_attribute" value="name" />
+          <zeebe:property name="data_attribute" value="flight_number" />
+          <zeebe:property name="data_attribute" value="barcode" />
+          <zeebe:property name="data_attribute" value="seat_number" />
+        </zeebe:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_120zz4b" />
+  </bpmn:process>
+
+Example Question: Why does the agent need to assign me a seat?
+
+Example Answer: The agent needs to assign you a seat in order for the Boarding Pass to be issued, since the Boarding Pass contains your seat number.
+
