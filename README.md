@@ -40,9 +40,6 @@ Jupyter Notebook "CBR-RAG.ipynb" requires:
 - Python 3.14.2 (other versions not tested)
 - [Ollama](https://ollama.com) running locally on `http://localhost:11434` with the `llama3.1` model pulled
   
-The"CBR-RAG.ipynb" includes the prompt template and pipleline, basically everythign to run it, expect for the bpmn for the pattern adaptation category
-For the question type pattern adaptation category please copy paste the BPMN XML (without the dimension part) into the variable new_bpmn
-
 ## Dependencies
 Install the required Python libraries:
 ```bash
