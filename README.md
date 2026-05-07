@@ -51,11 +51,16 @@ For further details on these libraries, see:
 - [haystack-integrations — Ollama](https://haystack.deepset.ai/integrations/ollama)
 
 
+---
+
 ## Folder Structure
+
 The notebook expects the following folders in the same directory as `CBR-RAG.ipynb`:
+
+```
 case_query/        # Plain-text query examples used for embedding and retrieval
 case_document/     # Matching XML/BPMN case documents loaded at inference time
-
+```
 
 ## How to Run
 
