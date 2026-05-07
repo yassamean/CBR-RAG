@@ -36,7 +36,8 @@ Submitted: 08th May 2026
 
 # CBR-RAG — How to Run
 
-Jupyter Notebook "CBR-RAG.ipynb" requires:
+## Requirements
+
 - Python 3.14.2 (other versions not tested)
 - [Ollama](https://ollama.com) running locally on `http://localhost:11434` with the `llama3.1` model pulled
   
