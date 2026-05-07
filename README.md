@@ -51,8 +51,6 @@ For further details on these libraries, see:
 - [haystack-integrations — Ollama](https://haystack.deepset.ai/integrations/ollama)
 
 
----
-
 ## Folder Structure
 
 The notebook expects the following folders in the same directory as `CBR-RAG.ipynb`:
