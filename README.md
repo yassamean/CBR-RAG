@@ -28,7 +28,7 @@ Submitted: 08th May 2026
 - Folder `case_document/` — 6 BPMN process models serialized in XML, each paired with a question-answer example, as `.txt` files
 
 **Folder `Experimental_output/`**
-- All generated textual process descriptions and cosine similarity scores, differentiated by question (PDF).
+- All generated textual process descriptions and cosine similarity scores, differentiated by question (PDF)
 
 ---
 
