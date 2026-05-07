@@ -90,9 +90,6 @@ If the target process is already in the case base, leave `new_bpmn` as an empty 
 
 # Plain LLM — How to Run 
 
-A baseline notebook that sends a passenger question together with a BPMN model directly to the LLM, without any retrieval or case base. Used as a comparison system to the CBR-RAG pipeline.
-
----
 
 ## Requirements
 
