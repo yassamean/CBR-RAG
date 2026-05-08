@@ -1,4 +1,4 @@
-# CBR-RAG Electronic Attachment — Master's Thesis
+# CBR-RAG Electronic Attachment Master's Thesis
 
 **"Towards Explainable Process Models: Answering Why-Questions in BPMN through Case-Based Reasoning"**
 
@@ -28,19 +28,24 @@ Submitted: 08th May 2026
 - Folder `case_document/` — 6 BPMN process models serialized in XML, each paired with a question-answer example, as `.txt` files
 
 **Folder `Experimental_output/`**
-- All generated textual process descriptions and cosine similarity scores, differentiated by question (PDF)
+- All generated textual process descriptions and cosine similarity scores, differentiated by question as a PDF
+
+**The empty user Questionnaire `Questionnaire_blank/`** as a PDF
 
 ---
 
 ---
 
-# CBR-RAG — How to Run
+# CBR-RAG
+
 
 ## Requirements
 
 - Python 3.14.2 (other versions not tested)
 - [Ollama](https://ollama.com) running locally on `http://localhost:11434` with the `llama3.1` model pulled
-  
+
+---
+
 ## Dependencies
 Install the required Python libraries:
 ```bash
@@ -50,7 +55,8 @@ pip install haystack-integrations[ollama]
 For further details on these libraries, see:
 - [haystack-ai (deepset)](https://docs.haystack.deepset.ai)
 - [haystack-integrations — Ollama](https://haystack.deepset.ai/integrations/ollama)
-
+  
+---
 
 ## Folder Structure
 
@@ -60,6 +66,7 @@ The notebook expects the following folders in the same directory as `CBR-RAG.ipy
 case_query/        # Plain-text query examples used for embedding and retrieval
 case_document/     # Matching XML/BPMN case documents loaded at inference time
 ```
+---
 
 ## How to Run
 
@@ -71,8 +78,8 @@ case_document/     # Matching XML/BPMN case documents loaded at inference time
 
 2. Open and run `CBR-RAG.ipynb` from top to bottom. The notebook contains the full pipeline setup, prompt template, and inference logic. The inline comments explain the underlying logic of each component.
 
-
-## Pattern Adaptation — BPMNs Not in the Case Base
+---
+## Pattern Adaptation (when BPMNs are not in the case base)
 
 For questions that require **pattern adaptation**, the target BPMN process must be provided manually, as the following processes are not yet indexed in the case base:
 
@@ -89,7 +96,7 @@ If the target process is already in the case base, leave `new_bpmn` as an empty 
 
 ---
 
-# Plain LLM — How to Run 
+# Plain LLM 
 
 
 ## Requirements
